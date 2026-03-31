@@ -7,63 +7,20 @@
 <title>VScout - Vanguard Athletic Advisory</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style> 
-  nav { background: #071529 !important; border-bottom: 2px solid #C9952A !important; }
-.nav-v { color: #C9952A !important; }
-.nav-scout { color: #FFFFFF !important; }
-.nav-sub { color: rgba(255,255,255,0.4) !important; }
-.nav-badge { color: #C9952A !important; }
-.hero { background: #0B1F3A !important; }
-.hero-title { color: #FFFFFF !important; }
-.hero-title em { color: #C9952A !important; }
-.hero-desc { color: rgba(255,255,255,0.6) !important; }
-.hero-eyebrow-text { color: #C9952A !important; }
-.hero-eyebrow-line { background: #C9952A !important; }
-.hero-stat { border-left: 2px solid #C9952A !important; }
-.hero-stat-num { color: #FFFFFF !important; }
-.form-card-header { background: #0B1F3A !important; }
-.form-card-title { color: #FFFFFF !important; }
-.fsection-label { color: #0B1F3A !important; border-bottom: 2px solid #C9952A !important; }
-.fsection-num { background: #C9952A !important; }
-.btn-primary { background: #C9952A !important; color: #FFFFFF !important; }
-.report-top { background: #0B1F3A !important; }
-.paywall-banner { background: #0B1F3A !important; border-left: 4px solid #C9952A !important; }
-.btn-unlock { background: #C9952A !important; }
-.upgrade-card { background: #0B1F3A !important; }
-.btn-upgrade { background: #C9952A !important; }
-footer { background: #071529 !important; border-top: 2px solid #C9952A !important; }
-.footer-brand span:first-child { color: #C9952A !important; }
+<style>
 
-  root {
-    --navy:       #0B1F3A;
-    --navy-dark:  #071529;
-    --navy-mid:   #132d50;
-    --gold:       #C9952A;
-    --gold-light: #E8B44A;
-    --gold-pale:  #FDF3DC;
-    --white:      #FFFFFF;
-    --off-white:  #F7F8FA;
-    --light-gray: #ECEEF2;
-    --border:     #DDE1E9;
-    --text:       #1A2332;
-    --text-mid:   #4A5568;
-    --text-muted: #8A95A3;
-    --success:    #1A7F4E;
-    --danger:     #C0392B;
-  }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+- { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
 font-family: ‘Inter’, sans-serif;
-background: var(–off-white);
-color: var(–text);
+background: #F7F8FA;
+color: #1A2332;
 min-height: 100vh;
 }
 
 /* NAV */
 nav {
-background: var(–navy-dark);
+background: #071529;
 padding: 0 48px;
 display: flex;
 align-items: center;
@@ -72,145 +29,145 @@ height: 64px;
 position: sticky;
 top: 0;
 z-index: 100;
-border-bottom: 2px solid var(–gold);
+border-bottom: 2px solid #C9952A;
 }
 
 .nav-logo { display: flex; align-items: center; gap: 14px; }
-.nav-v { font-family: ‘Barlow Condensed’, sans-serif; font-size: 30px; font-weight: 800; color: var(–gold); letter-spacing: 1px; line-height: 1; }
-.nav-scout { font-family: ‘Barlow Condensed’, sans-serif; font-size: 30px; font-weight: 400; color: var(–white); letter-spacing: 1px; line-height: 1; }
+.nav-v { font-family: ‘Barlow Condensed’, sans-serif; font-size: 30px; font-weight: 800; color: #C9952A; letter-spacing: 1px; line-height: 1; }
+.nav-scout { font-family: ‘Barlow Condensed’, sans-serif; font-size: 30px; font-weight: 400; color: #FFFFFF; letter-spacing: 1px; line-height: 1; }
 .nav-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.15); }
 .nav-sub { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; }
-.nav-badge { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(–gold); border: 1px solid rgba(201,149,42,0.4); padding: 5px 12px; }
+.nav-badge { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #C9952A; border: 1px solid rgba(201,149,42,0.4); padding: 5px 12px; }
 
 /* HERO */
-.hero { background: var(–navy); padding: 72px 48px 80px; position: relative; overflow: hidden; }
+.hero { background: #0B1F3A; padding: 72px 48px 80px; position: relative; overflow: hidden; }
 .hero::before { content: ‘VSCOUT’; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: ‘Barlow Condensed’, sans-serif; font-size: 220px; font-weight: 800; color: rgba(255,255,255,0.025); letter-spacing: -4px; pointer-events: none; line-height: 1; white-space: nowrap; }
 .hero-inner { max-width: 780px; position: relative; z-index: 1; }
 .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-.hero-eyebrow-line { width: 32px; height: 2px; background: var(–gold); }
-.hero-eyebrow-text { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(–gold); }
-.hero-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: clamp(56px, 9vw, 96px); font-weight: 800; line-height: 0.92; color: var(–white); letter-spacing: 1px; margin-bottom: 24px; }
-.hero-title em { font-style: normal; color: var(–gold); }
+.hero-eyebrow-line { width: 32px; height: 2px; background: #C9952A; }
+.hero-eyebrow-text { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #C9952A; }
+.hero-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: clamp(56px, 9vw, 96px); font-weight: 800; line-height: 0.92; color: #FFFFFF; letter-spacing: 1px; margin-bottom: 24px; }
+.hero-title em { font-style: normal; color: #C9952A; }
 .hero-desc { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 520px; font-weight: 300; margin-bottom: 36px; }
 .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
-.hero-stat { border-left: 2px solid var(–gold); padding-left: 14px; }
-.hero-stat-num { font-family: ‘Barlow Condensed’, sans-serif; font-size: 28px; font-weight: 700; color: var(–white); line-height: 1; margin-bottom: 2px; }
+.hero-stat { border-left: 2px solid #C9952A; padding-left: 14px; }
+.hero-stat-num { font-family: ‘Barlow Condensed’, sans-serif; font-size: 28px; font-weight: 700; color: #FFFFFF; line-height: 1; margin-bottom: 2px; }
 .hero-stat-label { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; }
 
 /* FORM */
-.content { background: var(–off-white); }
+.content { background: #F7F8FA; }
 .form-wrapper { max-width: 860px; margin: 0 auto; padding: 56px 48px; }
-.form-card { background: var(–white); border: 1px solid var(–border); border-radius: 2px; overflow: hidden; }
-.form-card-header { background: var(–navy); padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
-.form-card-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; color: var(–white); text-transform: uppercase; }
-.form-card-free { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(–gold); }
+.form-card { background: #FFFFFF; border: 1px solid #DDE1E9; border-radius: 2px; overflow: hidden; }
+.form-card-header { background: #0B1F3A; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+.form-card-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; color: #FFFFFF; text-transform: uppercase; }
+.form-card-free { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #C9952A; }
 .form-body { padding: 36px 32px; }
 .fsection { margin-bottom: 32px; }
-.fsection-label { font-family: ‘Barlow Condensed’, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(–navy); padding-bottom: 10px; border-bottom: 2px solid var(–gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-.fsection-num { background: var(–gold); color: var(–white); font-size: 10px; font-family: ‘IBM Plex Mono’, monospace; padding: 2px 7px; letter-spacing: 1px; }
+.fsection-label { font-family: ‘Barlow Condensed’, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #0B1F3A; padding-bottom: 10px; border-bottom: 2px solid #C9952A; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.fsection-num { background: #C9952A; color: #FFFFFF; font-size: 10px; font-family: ‘IBM Plex Mono’, monospace; padding: 2px 7px; letter-spacing: 1px; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
 .form-grid.full { grid-template-columns: 1fr; }
 .field { display: flex; flex-direction: column; gap: 6px; }
-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(–text-mid); }
-input, select, textarea { background: var(–off-white); border: 1.5px solid var(–border); color: var(–text); padding: 12px 14px; font-family: ‘Inter’, sans-serif; font-size: 14px; outline: none; border-radius: 2px; transition: border-color 0.15s, background 0.15s; -webkit-appearance: none; appearance: none; }
-input:focus, select:focus, textarea:focus { border-color: var(–navy); background: var(–white); }
-input::placeholder, textarea::placeholder { color: var(–text-muted); }
+label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #4A5568; }
+input, select, textarea { background: #F7F8FA; border: 1.5px solid #DDE1E9; color: #1A2332; padding: 12px 14px; font-family: ‘Inter’, sans-serif; font-size: 14px; outline: none; border-radius: 2px; transition: border-color 0.15s, background 0.15s; -webkit-appearance: none; appearance: none; }
+input:focus, select:focus, textarea:focus { border-color: #0B1F3A; background: #FFFFFF; }
+input::placeholder, textarea::placeholder { color: #8A95A3; }
 select { cursor: pointer; background-image: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘12’ height=‘7’ viewBox=‘0 0 12 7’%3E%3Cpath d=‘M1 1l5 5 5-5’ stroke=’%238A95A3’ stroke-width=‘1.5’ fill=‘none’ stroke-linecap=‘round’/%3E%3C/svg%3E”); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
 select option { background: white; }
 textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
 
-.submit-row { display: flex; align-items: center; gap: 24px; padding: 24px 32px; background: var(–light-gray); border-top: 1px solid var(–border); flex-wrap: wrap; }
-.btn-primary { background: var(–gold); color: var(–white); border: none; padding: 16px 40px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 10px; border-radius: 2px; }
-.btn-primary:hover { background: var(–gold-light); transform: translateY(-1px); }
+.submit-row { display: flex; align-items: center; gap: 24px; padding: 24px 32px; background: #ECEEF2; border-top: 1px solid #DDE1E9; flex-wrap: wrap; }
+.btn-primary { background: #C9952A; color: #FFFFFF; border: none; padding: 16px 40px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 10px; border-radius: 2px; }
+.btn-primary:hover { background: #E8B44A; transform: translateY(-1px); }
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.free-note { font-size: 12px; color: var(–text-muted); line-height: 1.6; }
-.free-note strong { color: var(–text); }
-.error-msg { display: none; background: #fdf0ef; border: 1px solid #e8b4b0; color: var(–danger); padding: 12px 16px; font-size: 13px; margin: 0 32px 16px; border-radius: 2px; }
+.free-note { font-size: 12px; color: #8A95A3; line-height: 1.6; }
+.free-note strong { color: #1A2332; }
+.error-msg { display: none; background: #fdf0ef; border: 1px solid #e8b4b0; color: #C0392B; padding: 12px 16px; font-size: 13px; margin: 0 32px 16px; border-radius: 2px; }
 
 /* LOADING */
 #loading { display: none; padding: 56px 48px; max-width: 860px; margin: 0 auto; }
-.loading-card { background: var(–white); border: 1px solid var(–border); padding: 64px 32px; text-align: center; }
-.spinner { width: 48px; height: 48px; border: 3px solid var(–light-gray); border-top-color: var(–gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 24px; }
+.loading-card { background: #FFFFFF; border: 1px solid #DDE1E9; padding: 64px 32px; text-align: center; }
+.spinner { width: 48px; height: 48px; border: 3px solid #ECEEF2; border-top-color: #C9952A; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 24px; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.loading-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 3px; color: var(–navy); margin-bottom: 8px; }
-.loading-sub { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: var(–text-muted); letter-spacing: 1px; }
+.loading-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 3px; color: #0B1F3A; margin-bottom: 8px; }
+.loading-sub { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: #8A95A3; letter-spacing: 1px; }
 .loading-steps { margin-top: 32px; display: flex; flex-direction: column; gap: 8px; max-width: 300px; margin-left: auto; margin-right: auto; }
-.loading-step { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: var(–text-muted); display: flex; align-items: center; gap: 10px; opacity: 0; transition: opacity 0.4s; }
-.loading-step.active { opacity: 1; color: var(–navy); }
-.loading-step.done { opacity: 1; color: var(–success); }
+.loading-step { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: #8A95A3; display: flex; align-items: center; gap: 10px; opacity: 0; transition: opacity 0.4s; }
+.loading-step.active { opacity: 1; color: #0B1F3A; }
+.loading-step.done { opacity: 1; color: #1A7F4E; }
 .step-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 
 /* REPORT */
 #report { display: none; padding: 56px 48px; max-width: 860px; margin: 0 auto; animation: fadeUp 0.4s ease; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-.report-top { background: var(–navy); padding: 32px; margin-bottom: 2px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
-.report-name { font-family: ‘Barlow Condensed’, sans-serif; font-size: 42px; font-weight: 800; color: var(–white); letter-spacing: 1px; line-height: 1; margin-bottom: 6px; }
+.report-top { background: #0B1F3A; padding: 32px; margin-bottom: 2px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.report-name { font-family: ‘Barlow Condensed’, sans-serif; font-size: 42px; font-weight: 800; color: #FFFFFF; letter-spacing: 1px; line-height: 1; margin-bottom: 6px; }
 .report-meta { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
 .report-stamp { text-align: right; }
 .stamp-label { font-family: ‘IBM Plex Mono’, monospace; font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
-.stamp-val { font-family: ‘IBM Plex Mono’, monospace; font-size: 12px; color: var(–gold); letter-spacing: 1px; }
+.stamp-val { font-family: ‘IBM Plex Mono’, monospace; font-size: 12px; color: #C9952A; letter-spacing: 1px; }
 
 /* Section */
-.r-section { background: var(–white); border: 1px solid var(–border); margin-bottom: 8px; overflow: hidden; }
-.r-section-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(–border); background: var(–off-white); }
+.r-section { background: #FFFFFF; border: 1px solid #DDE1E9; margin-bottom: 8px; overflow: hidden; }
+.r-section-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid #DDE1E9; background: #F7F8FA; }
 .r-section-left { display: flex; align-items: center; gap: 12px; }
-.r-num { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; color: var(–gold); letter-spacing: 1px; background: var(–gold-pale); padding: 3px 8px; border-radius: 2px; }
-.r-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(–navy); text-transform: uppercase; }
+.r-num { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; color: #C9952A; letter-spacing: 1px; background: #FDF3DC; padding: 3px 8px; border-radius: 2px; }
+.r-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; color: #0B1F3A; text-transform: uppercase; }
 .r-badge { font-family: ‘IBM Plex Mono’, monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
-.badge-free { background: #e8f8f0; color: var(–success); border: 1px solid #a8dfc4; }
-.badge-locked { background: var(–light-gray); color: var(–text-muted); border: 1px solid var(–border); }
-.badge-unlocked { background: var(–gold-pale); color: var(–gold); border: 1px solid #e8c97a; }
+.badge-free { background: #e8f8f0; color: #1A7F4E; border: 1px solid #a8dfc4; }
+.badge-locked { background: #ECEEF2; color: #8A95A3; border: 1px solid #DDE1E9; }
+.badge-unlocked { background: #FDF3DC; color: #C9952A; border: 1px solid #e8c97a; }
 
-.r-body { padding: 24px; font-size: 14px; line-height: 1.85; color: var(–text-mid); }
+.r-body { padding: 24px; font-size: 14px; line-height: 1.85; color: #4A5568; }
 .r-body p { margin-bottom: 12px; }
 .r-body p:last-child { margin-bottom: 0; }
 
 /* Locked */
 .locked-body { padding: 36px 24px; text-align: center; background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(236,238,242,0.6) 8px, rgba(236,238,242,0.6) 9px); }
 .lock-icon { font-size: 20px; margin-bottom: 10px; opacity: 0.3; }
-.locked-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(–text-muted); text-transform: uppercase; margin-bottom: 4px; }
-.locked-sub { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: var(–text-muted); letter-spacing: 1px; }
+.locked-title { font-family: ‘Barlow Condensed’, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; color: #8A95A3; text-transform: uppercase; margin-bottom: 4px; }
+.locked-sub { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: #8A95A3; letter-spacing: 1px; }
 
 /* Paywall Banner */
-.paywall-banner { background: var(–navy); padding: 32px; margin: 8px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; border-left: 4px solid var(–gold); }
-.paywall-left h3 { font-family: ‘Barlow Condensed’, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 2px; color: var(–white); text-transform: uppercase; margin-bottom: 6px; }
+.paywall-banner { background: #0B1F3A; padding: 32px; margin: 8px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; border-left: 4px solid #C9952A; }
+.paywall-left h3 { font-family: ‘Barlow Condensed’, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 2px; color: #FFFFFF; text-transform: uppercase; margin-bottom: 6px; }
 .paywall-left p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; max-width: 400px; }
 .paywall-right { text-align: center; }
-.paywall-price { font-family: ‘Barlow Condensed’, sans-serif; font-size: 48px; font-weight: 800; color: var(–white); line-height: 1; }
-.paywall-price sup { font-size: 22px; color: var(–gold); vertical-align: super; }
+.paywall-price { font-family: ‘Barlow Condensed’, sans-serif; font-size: 48px; font-weight: 800; color: #FFFFFF; line-height: 1; }
+.paywall-price sup { font-size: 22px; color: #C9952A; vertical-align: super; }
 .paywall-note { font-family: ‘IBM Plex Mono’, monospace; font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-.btn-unlock { background: var(–gold); color: var(–white); border: none; padding: 14px 32px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; border-radius: 2px; white-space: nowrap; }
-.btn-unlock:hover { background: var(–gold-light); transform: translateY(-1px); }
+.btn-unlock { background: #C9952A; color: #FFFFFF; border: none; padding: 14px 32px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; border-radius: 2px; white-space: nowrap; }
+.btn-unlock:hover { background: #E8B44A; transform: translateY(-1px); }
 
 /* Demo unlock */
 .demo-unlock { background: #e8f8f0; border: 1px solid #a8dfc4; padding: 16px 24px; margin: 8px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-radius: 2px; }
-.demo-unlock p { font-size: 13px; color: var(–success); font-weight: 500; }
-.demo-unlock span { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: var(–text-muted); }
-.btn-demo { background: var(–success); color: var(–white); border: none; padding: 10px 24px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 2px; cursor: pointer; border-radius: 2px; transition: all 0.15s; white-space: nowrap; }
+.demo-unlock p { font-size: 13px; color: #1A7F4E; font-weight: 500; }
+.demo-unlock span { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: #8A95A3; }
+.btn-demo { background: #1A7F4E; color: #FFFFFF; border: none; padding: 10px 24px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 2px; cursor: pointer; border-radius: 2px; transition: all 0.15s; white-space: nowrap; }
 .btn-demo:hover { opacity: 0.9; }
 
 /* Full report loading */
 .section-loading { padding: 24px; text-align: center; }
-.section-spinner { width: 24px; height: 24px; border: 2px solid var(–light-gray); border-top-color: var(–gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 10px; }
-.section-loading-text { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: var(–text-muted); letter-spacing: 1px; }
+.section-spinner { width: 24px; height: 24px; border: 2px solid #ECEEF2; border-top-color: #C9952A; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 10px; }
+.section-loading-text { font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; color: #8A95A3; letter-spacing: 1px; }
 
 /* VAA CTA */
-.vaa-card { background: var(–white); border: 1px solid var(–border); border-left: 4px solid var(–navy); padding: 28px 32px; margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.vaa-card-left h3 { font-family: ‘Barlow Condensed’, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: var(–navy); text-transform: uppercase; margin-bottom: 6px; }
-.vaa-card-left p { font-size: 13px; color: var(–text-muted); line-height: 1.6; max-width: 440px; }
-.btn-vaa { background: var(–navy); color: var(–white); border: none; padding: 14px 28px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; white-space: nowrap; border-radius: 2px; }
-.btn-vaa:hover { background: var(–navy-mid); }
+.vaa-card { background: #FFFFFF; border: 1px solid #DDE1E9; border-left: 4px solid #0B1F3A; padding: 28px 32px; margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.vaa-card-left h3 { font-family: ‘Barlow Condensed’, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: #0B1F3A; text-transform: uppercase; margin-bottom: 6px; }
+.vaa-card-left p { font-size: 13px; color: #8A95A3; line-height: 1.6; max-width: 440px; }
+.btn-vaa { background: #0B1F3A; color: #FFFFFF; border: none; padding: 14px 28px; font-family: ‘Barlow Condensed’, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; white-space: nowrap; border-radius: 2px; }
+.btn-vaa:hover { background: #132d50; }
 
-.reset-row { margin-top: 40px; text-align: center; padding-top: 32px; border-top: 1px solid var(–border); }
-.btn-reset { background: transparent; color: var(–text-muted); border: 1px solid var(–border); padding: 10px 24px; font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
-.btn-reset:hover { color: var(–navy); border-color: var(–navy); }
+.reset-row { margin-top: 40px; text-align: center; padding-top: 32px; border-top: 1px solid #DDE1E9; }
+.btn-reset { background: transparent; color: #8A95A3; border: 1px solid #DDE1E9; padding: 10px 24px; font-family: ‘IBM Plex Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+.btn-reset:hover { color: #0B1F3A; border-color: #0B1F3A; }
 
-footer { background: var(–navy-dark); border-top: 2px solid var(–gold); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+footer { background: #071529; border-top: 2px solid #C9952A; padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .footer-brand { font-family: ‘Barlow Condensed’, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 3px; }
-.footer-brand span:first-child { color: var(–gold); }
-.footer-brand span:last-child { color: var(–white); font-weight: 400; }
+.footer-brand span:first-child { color: #C9952A; }
+.footer-brand span:last-child { color: #FFFFFF; font-weight: 400; }
 .footer-note { font-family: ‘IBM Plex Mono’, monospace; font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
 
 @media (max-width: 640px) {
@@ -298,7 +255,7 @@ footer { padding: 24px 20px; }
       </div>
       <div class="form-grid">
         <div class="field">
-          <label>Secondary Position <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional - if you play multiple)</span></label>
+          <label>Secondary Position <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#8A95A3">(optional - if you play multiple)</span></label>
           <select id="position2">
             <option value="">None / Single position athlete</option>
             <optgroup label="Offense">
@@ -313,7 +270,7 @@ footer { padding: 24px 20px; }
           </select>
         </div>
         <div class="field">
-          <label>Third Position <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+          <label>Third Position <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#8A95A3">(optional)</span></label>
           <select id="position3">
             <option value="">None</option>
             <optgroup label="Offense">
@@ -336,6 +293,10 @@ footer { padding: 24px 20px; }
         <div class="field"><label>Height *</label><input type="text" id="height" placeholder='e.g. 6&apos;2"' /></div>
         <div class="field"><label>Weight (lbs) *</label><input type="text" id="weight" placeholder="e.g. 210" /></div>
         <div class="field"><label>40-Yard Dash</label><input type="text" id="speed" placeholder="e.g. 4.55 or unknown" /></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Vertical Jump <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#8A95A3">(optional)</span></label><input type="text" id="vertical" placeholder="e.g. 34 inches or unknown" /></div>
+        <div class="field"><label>Team Record This Season</label><input type="text" id="teamRecord" placeholder="e.g. 8-3 or 5-5" /></div>
       </div>
     </div>
 
@@ -365,6 +326,10 @@ footer { padding: 24px 20px; }
         <div class="field"><label>GPA (Unweighted) *</label><input type="text" id="gpa" placeholder="e.g. 3.2" /></div>
         <div class="field"><label>SAT / ACT Score</label><input type="text" id="testScore" placeholder="e.g. SAT 1080 · ACT 22" /></div>
       </div>
+      <div class="form-grid full">
+        <div class="field"><label>Academic Interest / Intended Major <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#8A95A3">(optional - helps target right schools)</span></label>
+        <input type="text" id="major" placeholder="e.g. Business, Criminal Justice, Kinesiology, Undecided" /></div>
+      </div>
     </div>
 
     <div class="fsection">
@@ -384,6 +349,19 @@ footer { padding: 24px 20px; }
         </div>
       </div>
       <div class="form-grid full"><div class="field"><label>Highlight Film Link (Hudl or other)</label><input type="text" id="filmLink" placeholder="e.g. hudl.com/profile/..." /></div></div>
+      <div class="form-grid full">
+        <div class="field"><label>Schools of Interest <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#8A95A3">(optional - we'll tell you if they're realistic)</span></label>
+        <input type="text" id="schoolsOfInterest" placeholder="e.g. App State, Liberty, UNC Charlotte, NC State" /></div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>Location Preference *</label>
+        <select id="locationPref">
+          <option value="">Select preference</option>
+          <option>Close to home - within 3 hours</option>
+          <option>Open to my region - within 6-8 hours</option>
+          <option>Open to anywhere in the country</option>
+        </select></div>
+      </div>
       <div class="form-grid full"><div class="field"><label>What's Holding You Back? *</label><textarea id="challenge" placeholder="Be honest. e.g. No film yet, GPA needs work, don't know how to reach coaches, limited playing time..."></textarea></div></div>
     </div>
 
@@ -431,7 +409,7 @@ footer { padding: 24px 20px; }
     </div>
 
 ```
-<!-- FREE SECTION -->
+<!-- FREE SECTIONS -->
 <div class="r-section">
   <div class="r-section-head">
     <div class="r-section-left"><span class="r-num">01</span><span class="r-title">Level Assessment</span></div>
@@ -440,48 +418,80 @@ footer { padding: 24px 20px; }
   <div class="r-body" id="s1-content">Loading...</div>
 </div>
 
+<div class="r-section">
+  <div class="r-section-head">
+    <div class="r-section-left"><span class="r-num">02</span><span class="r-title">Schools of Interest — Honest Fit Analysis</span></div>
+    <span class="r-badge badge-free">✓ Free</span>
+  </div>
+  <div class="r-body" id="s2-content">Loading...</div>
+</div>
+
 <!-- PAYWALL BANNER -->
 <div class="paywall-banner" id="paywallBanner">
-  <div class="paywall-left">
-    <h3>Unlock Your Full Report</h3>
-    <p>7 more sections - your specific strengths, honest limitations, school targets with real program names, a 60-day action plan, coach email template, and final summary.</p>
+  <div style="width:100%;text-align:center;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#C9952A;margin-bottom:12px;">Your Free Eval Is Complete</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:800;color:#FFFFFF;letter-spacing:2px;line-height:1.1;margin-bottom:12px;">NOW FIND OUT WHICH<br>SCHOOLS WANT <span style="color:#C9952A;">YOU.</span></div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.55);max-width:480px;margin:0 auto;line-height:1.7;">We told you where your schools stand. Unlock the full report to get AI-suggested programs that actually fit your profile - plus your strengths, limitations, 60-day action plan, and a coach email ready to send today.</div>
   </div>
-  <div class="paywall-right">
-    <div class="paywall-price"><sup>$</sup>29</div>
-    <div class="paywall-note">One-time · No subscription</div>
-    <button class="btn-unlock" onclick="handleUnlock()">Unlock Now →</button>
+  <div style="width:100%;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;">
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.7);">
+        <span style="color:#C9952A;">✓</span> Strengths and Key Limitations
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.7);">
+        <span style="color:#C9952A;">✓</span> Reality Check vs. Your Target Level
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.7);">
+        <span style="color:#C9952A;">✓</span> AI-Suggested Schools - Reach, Realistic, Safety
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.7);">
+        <span style="color:#C9952A;">✓</span> 60-Day Action Plan
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.7);">
+        <span style="color:#C9952A;">✓</span> Coach Email Template - Ready to Send
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.7);">
+        <span style="color:#C9952A;">✓</span> Final Summary and Next Steps
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:800;color:#FFFFFF;line-height:1;"><sup style="font-size:32px;color:#C9952A;vertical-align:super;">$</sup>29</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">One-time · No subscription</div>
+      <button class="btn-unlock" onclick="handleUnlock()" style="width:100%;font-size:22px;padding:18px 48px;">Unlock Full Report →</button>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-top:10px;letter-spacing:1px;">Instant delivery after payment</div>
+    </div>
   </div>
 </div>
 
-<!-- DEMO UNLOCK NOTICE (shown after demo unlock) -->
+<!-- DEMO UNLOCK NOTICE -->
 <div class="demo-unlock" id="demoUnlockBanner" style="display:none;">
   <div>
     <p>✓ Full report unlocked - Demo Mode</p>
     <span>In production this unlocks after Stripe payment processes.</span>
   </div>
-  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);">DEMO</span>
+  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#C9952A;">DEMO</span>
 </div>
 
-<!-- LOCKED SECTIONS (shown before unlock) -->
+<!-- LOCKED SECTIONS -->
 <div id="lockedSections">
-  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">02</span><span class="r-title">Strengths</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Your 3-5 specific strengths based on your data</div></div></div>
-  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">03</span><span class="r-title">Key Limitations</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Honest gaps preventing higher-level recruitment</div></div></div>
-  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">04</span><span class="r-title">Reality Check</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Where you stand vs. typical recruits at your target level</div></div></div>
-  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">05</span><span class="r-title">School Targeting Strategy</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Reach · Realistic · Safety - real program names</div></div></div>
-  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">06</span><span class="r-title">60-Day Action Plan</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Weekly actions, outreach plan, development focus</div></div></div>
-  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">07</span><span class="r-title">Coach Email Template</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Personalized email ready to send to coaches today</div></div></div>
-  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">08</span><span class="r-title">Final Summary</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Current level · What must improve · What happens if nothing changes</div></div></div>
+  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">03</span><span class="r-title">Strengths</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Your 3-5 specific strengths based on your data</div></div></div>
+  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">04</span><span class="r-title">Key Limitations</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Honest gaps preventing higher-level recruitment</div></div></div>
+  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">05</span><span class="r-title">Reality Check</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Where you stand vs. typical recruits at your target level</div></div></div>
+  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">06</span><span class="r-title">School Targeting Strategy</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">AI-suggested programs that fit your profile - reach, realistic, and safety</div></div></div>
+  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">07</span><span class="r-title">60-Day Action Plan</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Weekly actions, outreach plan, development focus</div></div></div>
+  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">08</span><span class="r-title">Coach Email Template</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Personalized email ready to send to coaches today</div></div></div>
+  <div class="r-section"><div class="r-section-head"><div class="r-section-left"><span class="r-num">09</span><span class="r-title">Final Summary</span></div><span class="r-badge badge-locked">🔒 Locked</span></div><div class="locked-body"><div class="lock-icon">🔒</div><div class="locked-title">Unlock Full Report</div><div class="locked-sub">Current level · What must improve · What happens if nothing changes</div></div></div>
 </div>
 
 <!-- UNLOCKED SECTIONS (hidden until paid) -->
 <div id="unlockedSections" style="display:none;">
-  <div class="r-section" id="s2-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">02</span><span class="r-title">Strengths</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s2-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
-  <div class="r-section" id="s3-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">03</span><span class="r-title">Key Limitations</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s3-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
-  <div class="r-section" id="s4-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">04</span><span class="r-title">Reality Check</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s4-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
-  <div class="r-section" id="s5-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">05</span><span class="r-title">School Targeting Strategy</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s5-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
-  <div class="r-section" id="s6-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">06</span><span class="r-title">60-Day Action Plan</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s6-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
-  <div class="r-section" id="s7-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">07</span><span class="r-title">Coach Email Template</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s7-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
-  <div class="r-section" id="s8-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">08</span><span class="r-title">Final Summary</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s8-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
+  <div class="r-section" id="s3-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">03</span><span class="r-title">Strengths</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s3-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
+  <div class="r-section" id="s4-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">04</span><span class="r-title">Key Limitations</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s4-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
+  <div class="r-section" id="s5-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">05</span><span class="r-title">Reality Check</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s5-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
+  <div class="r-section" id="s6-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">06</span><span class="r-title">School Targeting Strategy</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s6-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
+  <div class="r-section" id="s7-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">07</span><span class="r-title">60-Day Action Plan</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s7-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
+  <div class="r-section" id="s8-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">08</span><span class="r-title">Coach Email Template</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s8-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
+  <div class="r-section" id="s9-wrap"><div class="r-section-head"><div class="r-section-left"><span class="r-num">09</span><span class="r-title">Final Summary</span></div><span class="r-badge badge-unlocked">✓ Unlocked</span></div><div class="r-body" id="s9-content"><div class="section-loading"><div class="section-spinner"></div><div class="section-loading-text">Generating...</div></div></div></div>
 </div>
 
 <!-- VAA CTA -->
@@ -527,25 +537,30 @@ footer { padding: 24px 20px; }
   // ── Collect fields
   function collectFields() {
     return {
-      name:           document.getElementById('name').value.trim(),
-      position2:      document.getElementById('position2').value,
-      position3:      document.getElementById('position3').value,
-      gradYear:       document.getElementById('gradYear').value,
-      position:       document.getElementById('position').value,
-      location:       document.getElementById('location').value.trim(),
-      height:         document.getElementById('height').value.trim(),
-      weight:         document.getElementById('weight').value.trim(),
-      speed:          document.getElementById('speed').value.trim(),
-      role:           document.getElementById('role').value,
-      competition:    document.getElementById('competition').value,
-      stats:          document.getElementById('stats').value.trim(),
-      awards:         document.getElementById('awards').value.trim(),
-      gpa:            document.getElementById('gpa').value.trim(),
-      testScore:      document.getElementById('testScore').value.trim(),
-      offers:         document.getElementById('offers').value,
-      selfAssessment: document.getElementById('selfAssessment').value,
-      filmLink:       document.getElementById('filmLink').value.trim(),
-      challenge:      document.getElementById('challenge').value.trim(),
+      name:              document.getElementById('name').value.trim(),
+      position2:         document.getElementById('position2').value,
+      position3:         document.getElementById('position3').value,
+      gradYear:          document.getElementById('gradYear').value,
+      position:          document.getElementById('position').value,
+      location:          document.getElementById('location').value.trim(),
+      height:            document.getElementById('height').value.trim(),
+      weight:            document.getElementById('weight').value.trim(),
+      speed:             document.getElementById('speed').value.trim(),
+      vertical:          document.getElementById('vertical').value.trim(),
+      teamRecord:        document.getElementById('teamRecord').value.trim(),
+      role:              document.getElementById('role').value,
+      competition:       document.getElementById('competition').value,
+      stats:             document.getElementById('stats').value.trim(),
+      awards:            document.getElementById('awards').value.trim(),
+      gpa:               document.getElementById('gpa').value.trim(),
+      testScore:         document.getElementById('testScore').value.trim(),
+      major:             document.getElementById('major').value.trim(),
+      offers:            document.getElementById('offers').value,
+      selfAssessment:    document.getElementById('selfAssessment').value,
+      filmLink:          document.getElementById('filmLink').value.trim(),
+      schoolsOfInterest: document.getElementById('schoolsOfInterest').value.trim(),
+      locationPref:      document.getElementById('locationPref').value,
+      challenge:         document.getElementById('challenge').value.trim(),
     };
   }
 
@@ -556,11 +571,13 @@ footer { padding: 24px 20px; }
       ? `Primary Position: ${f.position} | Also plays: ${extraPos}`
       : `Position: ${f.position}`;
     return `Athlete: ${f.name} | ${posLine} | Class: ${f.gradYear} | Location: ${f.location}
-Size: ${f.height}, ${f.weight} lbs | 40-yard: ${f.speed || 'not provided'}
-Role: ${f.role} | Competition: ${f.competition}
+Size: ${f.height}, ${f.weight} lbs | 40-yard: ${f.speed || 'not provided'} | Vertical: ${f.vertical || 'not provided'}
+Team Record: ${f.teamRecord || 'not provided'} | Role: ${f.role} | Competition: ${f.competition}
 Stats: ${f.stats} | Awards: ${f.awards || 'none listed'}
-GPA: ${f.gpa} | Test Score: ${f.testScore || 'not provided'}
+GPA: ${f.gpa} | Test Score: ${f.testScore || 'not provided'} | Intended Major: ${f.major || 'undecided'}
 Offers: ${f.offers} | Target Level: ${f.selfAssessment}
+Schools of Interest: ${f.schoolsOfInterest || 'none listed'}
+Location Preference: ${f.locationPref}
 Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
   }
 
@@ -592,7 +609,7 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
   // ── STEP 1: Generate free section (Level Assessment)
   async function generateReport() {
     const f = collectFields();
-    const required = ['name','gradYear','position','location','height','weight','role','competition','stats','gpa','offers','selfAssessment','challenge'];
+    const required = ['name','gradYear','position','location','height','weight','role','competition','stats','gpa','offers','selfAssessment','locationPref','challenge'];
     const errorBox = document.getElementById('errorBox');
 
     if (required.some(k => !f[k])) {
@@ -624,12 +641,25 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
         `Write ONLY Section 1: Level Assessment for this athlete. ${multiPosInstruction} Give a realistic division projection (Power 4 D1, G5 D1, FCS, D2, D3, NAIA, or JUCO) and explain clearly why - based on size, production, competition level, and academics. Be honest and direct. End with what's possible if they make the right moves. 3-4 paragraphs.\n\n${profileBlock(f)}`
       );
 
+      // Also generate Section 2: Schools of Interest for free
+      const schoolsText = f.schoolsOfInterest
+        ? await callClaude(SYSTEM,
+            `Write ONLY Section 2: Schools of Interest - Honest Fit Analysis. The athlete has listed these schools they are interested in: ${f.schoolsOfInterest}. For EACH school listed, give a direct honest verdict: Realistic Fit, Reach, or Not Realistic - and explain why in 2-3 sentences based on their profile. Be specific and honest. If no schools were listed, write a brief note encouraging them to list schools of interest and mention that the paid report includes AI-suggested schools that fit their profile.\n\n${profileBlock(f)}`
+          )
+        : null;
+
       const extraPos2 = [f.position2, f.position3].filter(p => p && p !== '').join(' · ');
       const posDisplay = extraPos2 ? `${f.position} · ${extraPos2}` : f.position;
       document.getElementById('reportName').textContent = f.name.toUpperCase();
       document.getElementById('reportMeta').textContent = `${posDisplay} · Class of ${f.gradYear} · ${f.location}`;
       document.getElementById('reportDate').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
       renderSection('s1-content', text);
+
+      if (schoolsText) {
+        renderSection('s2-content', schoolsText);
+      } else {
+        document.getElementById('s2-content').innerHTML = '<p>No schools of interest were listed. The paid report includes AI-suggested programs that fit your profile across reach, realistic, and safety tiers - nationwide or local based on your preference.</p>';
+      }
 
       document.getElementById('loading').style.display = 'none';
       document.getElementById('report').style.display = 'block';
@@ -666,38 +696,42 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
     // Generate sections in parallel for speed
     const sections = [
       {
-        id: 's2-content',
-        prompt: `Write ONLY Section 2: Strengths for this athlete. List 3-5 specific strengths based on their actual data. Avoid generic statements. Each strength should reference something concrete from their profile. 3-5 paragraphs.\n\n${profile}`
-      },
-      {
         id: 's3-content',
-        prompt: `Write ONLY Section 3: Key Limitations for this athlete. List 3-5 honest, specific weaknesses or gaps that are preventing higher-level recruitment. Be direct but constructive. Reference actual numbers and facts from their profile. 3-5 paragraphs.\n\n${profile}`
+        prompt: `Write ONLY Section 3: Strengths for this athlete. List 3-5 specific strengths based on their actual data. Avoid generic statements. Each strength should reference something concrete from their profile. 3-5 paragraphs.\n\n${profile}`
       },
       {
         id: 's4-content',
-        prompt: `Write ONLY Section 4: Reality Check for this athlete. Compare them directly to what a typical recruit looks like at their target level (${f.selfAssessment}). Be specific about where they match up and where they fall short. 2-3 paragraphs.\n\n${profile}`
+        prompt: `Write ONLY Section 4: Key Limitations for this athlete. List 3-5 honest, specific weaknesses or gaps that are preventing higher-level recruitment. Be direct but constructive. Reference actual numbers and facts from their profile. 3-5 paragraphs.\n\n${profile}`
       },
       {
         id: 's5-content',
-        prompt: `Write ONLY Section 5: School Targeting Strategy for this athlete. ${
-          athleteData.position.includes('Athlete') || athleteData.position.includes('Multi-Position')
-            ? 'This is a versatile multi-position athlete - identify the best-fit position for recruiting purposes and target schools based on that.'
-            : [athleteData.position2, athleteData.position3].filter(p=>p).length > 0
-              ? `This athlete plays multiple positions. Target schools based on whichever position gives them the strongest path.`
-              : ''
-        } Break into three tiers: Reach Schools (slightly above current level), Realistic Schools (best fit right now), and Safety Schools (where they are very competitive). Name 3-4 SPECIFIC real college programs in each tier based on their position, location (${f.location}), size, stats, and GPA. Explain briefly why each tier fits. Write in prose paragraphs, label each tier clearly.\n\n${profile}`
+        prompt: `Write ONLY Section 5: Reality Check for this athlete. Compare them directly to what a typical recruit looks like at their target level (${f.selfAssessment}). Be specific about where they match up and where they fall short. 2-3 paragraphs.\n\n${profile}`
       },
       {
         id: 's6-content',
-        prompt: `Write ONLY Section 6: 60-Day Action Plan for this athlete. Give a practical, week-by-week plan covering film, recruiting outreach, development focus, and camps. Be specific - name actual actions, not general advice. 4-6 paragraphs organized by week ranges.\n\n${profile}`
+        prompt: `Write ONLY Section 6: School Targeting Strategy for this athlete. ${
+          athleteData.position.includes('Athlete') || athleteData.position.includes('Multi-Position')
+            ? 'This is a versatile multi-position athlete - identify the best-fit position for recruiting purposes and target schools based on that.'
+            : [athleteData.position2, athleteData.position3].filter(p=>p).length > 0
+              ? 'This athlete plays multiple positions. Target schools based on whichever position gives them the strongest path.'
+              : ''
+        }
+
+Location preference: ${f.locationPref}. ${f.locationPref === 'Open to anywhere in the country' ? 'Target programs nationally - do not limit to their region.' : f.locationPref === 'Open to my region - within 6-8 hours' ? 'Target programs within their broader region.' : 'Prioritize programs close to their home location.'}
+
+Break into three tiers: Reach Schools (slightly above current level), Realistic Schools (best fit right now), and Safety Schools (where they are very competitive). Name 3-4 SPECIFIC real college programs in each tier based on their position, location preference, size, stats, and GPA. Explain briefly why each tier fits. Write in prose paragraphs, label each tier clearly.\n\n${profile}`
       },
       {
         id: 's7-content',
-        prompt: `Write ONLY Section 7: Recruiting Email Template for this athlete. Write a complete, concise, professional email they can send to college coaches today. Include a subject line. Keep it under 150 words. Reference their actual stats, position, grad year, and location. Make it feel personal, not like a template. Format it clearly as an email with Subject, greeting, body, and sign-off.\n\n${profile}`
+        prompt: `Write ONLY Section 7: 60-Day Action Plan for this athlete. Give a practical, week-by-week plan covering film, recruiting outreach, development focus, and camps. Be specific - name actual actions, not general advice. 4-6 paragraphs organized by week ranges.\n\n${profile}`
       },
       {
         id: 's8-content',
-        prompt: `Write ONLY Section 8: Final Summary for this athlete. Summarize: (1) their current realistic level, (2) the one or two things that must improve to change their trajectory, and (3) what the honest outcome looks like if nothing changes. End on a forward-looking note without being falsely motivational. 3 paragraphs.\n\n${profile}`
+        prompt: `Write ONLY Section 8: Recruiting Email Template for this athlete. Write a complete, concise, professional email they can send to college coaches today. Include a subject line. Keep it under 150 words. Reference their actual stats, position, grad year, and location. Make it feel personal, not like a template. Format it clearly as an email with Subject, greeting, body, and sign-off.\n\n${profile}`
+      },
+      {
+        id: 's9-content',
+        prompt: `Write ONLY Section 9: Final Summary for this athlete. Summarize: (1) their current realistic level, (2) the one or two things that must improve to change their trajectory, and (3) what the honest outcome looks like if nothing changes. End on a forward-looking note without being falsely motivational. 3 paragraphs.\n\n${profile}`
       }
     ];
 
