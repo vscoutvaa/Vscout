@@ -640,10 +640,42 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
     return signals;
   }
 
-  function buildVAAInstruction(signals) {
+  function buildVAAInstruction(signals, section) {
     if (signals.length === 0) return '';
-    return `\n\nVAA REFERRAL INSTRUCTION (IMPORTANT - MUST INCLUDE):
-The following signals were detected in this athlete's profile: ${signals.join('; ')}. Because of these signals, you MUST include a specific, personalized VAA referral paragraph at the end of this section. The referral should feel natural and caring - not salesy. Speak directly to what this specific athlete is going through based on the signals detected. Reference VAA's actual mission: "Vanguard Athletic Advisory is a faith-based organization dedicated to building the whole person - not just the performer. Through mentorship, leadership intensives, and one-on-one coaching, we develop identity, character, and vision. Because everybody performs. Not everybody grows." End the VAA referral with: "Learn more at vanguardaa.com"`;
+    const sigList = signals.join('; ');
+
+    switch (section) {
+      case 'limitations':
+        // Only mention VAA if academics or exposure gaps are present
+        const acadExposureSignals = signals.filter(s =>
+          s.includes('GPA') || s.includes('film') || s.includes('exposure') ||
+          s.includes('small school') || s.includes('undecided major')
+        );
+        if (acadExposureSignals.length === 0) return '';
+        return `\n\nVAA CONTEXT (1-2 sentences only, woven naturally into your analysis): Based on these detected gaps (${acadExposureSignals.join('; ')}), briefly mention that Vanguard Athletic Advisory works with athletes on exactly these kinds of developmental gaps - academics, exposure planning, and personal growth. Keep it to one or two sentences that connect directly to the specific limitations you just identified. Do not include the full VAA mission. Do not repeat any VAA wording used elsewhere in this report.`;
+
+      case 'reality':
+        // Only mention VAA if identity or confidence signals are present
+        const identitySignals = signals.filter(s =>
+          s.includes('pressure') || s.includes('stress') || s.includes('uncertainty') ||
+          s.includes("doesn't know") || s.includes('off-field') || s.includes('first generation') ||
+          s.includes('big goals') || s.includes('no connections')
+        );
+        if (identitySignals.length === 0) return '';
+        return `\n\nVAA CONTEXT (1-2 sentences only, woven naturally into your analysis): Based on these detected signals (${identitySignals.join('; ')}), briefly note that Vanguard Athletic Advisory specializes in helping athletes navigate the mental and identity side of recruiting - building confidence, clarity, and a plan that fits who they are. Keep it to one or two sentences tied directly to the reality check you just gave. Do not include the full VAA mission. Do not use the same phrasing as any other VAA mention in this report.`;
+
+      case 'schools':
+        return `\n\nVAA CONTEXT (1-2 sentences only, woven naturally into your analysis): Based on detected signals (${sigList}), briefly mention that Vanguard Athletic Advisory helps athletes identify the right-fit programs and navigate the outreach process with personalized coaching. Keep it to one or two sentences connected to the school targeting strategy you just laid out. Do not include the full VAA mission. Use completely different wording from any other VAA reference in this report.`;
+
+      case 'action':
+        return `\n\nVAA CONTEXT (1-2 sentences only, woven naturally into your analysis): Based on detected signals (${sigList}), briefly suggest that athletes who want structured accountability and mentorship through their action plan can connect with Vanguard Athletic Advisory for one-on-one coaching. Keep it to one or two sentences that tie into the specific action steps you just outlined. Do not include the full VAA mission. Phrase this differently from every other VAA mention in the report.`;
+
+      case 'summary':
+        return `\n\nVAA REFERRAL (FULL MISSION - MUST INCLUDE): The following signals were detected: ${sigList}. Because of these signals, you MUST include a dedicated VAA referral paragraph at the end of this section. This is the ONLY section where you include the full mission. The referral should feel natural and caring - not salesy. Speak directly to what this specific athlete is going through based on the signals detected. Reference VAA's full mission: "Vanguard Athletic Advisory is a faith-based organization dedicated to building the whole person - not just the performer. Through mentorship, leadership intensives, and one-on-one coaching, we develop identity, character, and vision. Because everybody performs. Not everybody grows." End with: "Learn more at vanguardaa.com"`;
+
+      default:
+        return '';
+    }
   }
 
   // ── System prompt base
@@ -742,7 +774,11 @@ The following signals were detected in this athlete's profile: ${signals.join(';
     const f = athleteData;
     const profile = profileBlock(f);
     const vaaSignals = detectVAASignals(f);
-    const vaaInstruction = buildVAAInstruction(vaaSignals);
+    const vaaLimitations = buildVAAInstruction(vaaSignals, 'limitations');
+    const vaaReality = buildVAAInstruction(vaaSignals, 'reality');
+    const vaaSchools = buildVAAInstruction(vaaSignals, 'schools');
+    const vaaAction = buildVAAInstruction(vaaSignals, 'action');
+    const vaaSummary = buildVAAInstruction(vaaSignals, 'summary');
 
     // Generate sections in parallel for speed
     const sections = [
@@ -752,11 +788,11 @@ The following signals were detected in this athlete's profile: ${signals.join(';
       },
       {
         id: 's4-content',
-        prompt: `Write ONLY Section 4: Key Limitations for this athlete. List 3-5 honest, specific weaknesses or gaps that are preventing higher-level recruitment. Be direct but constructive. Reference actual numbers and facts from their profile. 3-5 paragraphs.\n\n${profile}`
+        prompt: `Write ONLY Section 4: Key Limitations for this athlete. List 3-5 honest, specific weaknesses or gaps that are preventing higher-level recruitment. Be direct but constructive. Reference actual numbers and facts from their profile. 3-5 paragraphs.${vaaLimitations}\n\n${profile}`
       },
       {
         id: 's5-content',
-        prompt: `Write ONLY Section 5: Reality Check for this athlete. Compare them directly to what a typical recruit looks like at their target level (${f.selfAssessment}). Be specific about where they match up and where they fall short. 2-3 paragraphs.${vaaInstruction}\n\n${profile}`
+        prompt: `Write ONLY Section 5: Reality Check for this athlete. Compare them directly to what a typical recruit looks like at their target level (${f.selfAssessment}). Be specific about where they match up and where they fall short. 2-3 paragraphs.${vaaReality}\n\n${profile}`
       },
       {
         id: 's6-content',
@@ -780,11 +816,11 @@ ACADEMIC FIT RULES (MANDATORY):
 SCHOOL SEARCH SCOPE (MANDATORY):
 Consider EVERY college and university in the United States regardless of type, size, location, or affiliation. This includes HBCUs, PWIs, community colleges, faith-based institutions, military academies, Ivy League, Division 1, Division 2, Division 3, NAIA, and JUCO programs. Do not default to well known schools only. The best fit school for this athlete may be one that is less well known but perfectly matches their athletic level, academic program, location preference, and personal goals. Leave no school unconsidered. Cast the widest possible net and find the schools that truly fit this specific athlete.
 
-Break into three tiers: Reach Schools (slightly above current level), Realistic Schools (best fit right now), and Safety Schools (where they are very competitive). Name 3-4 SPECIFIC real college programs in each tier based on their position, location preference, size, stats, GPA, and academic program fit. Explain briefly why each tier fits both athletically and academically. Write in prose paragraphs, label each tier clearly.${vaaInstruction}\n\n${profile}`
+Break into three tiers: Reach Schools (slightly above current level), Realistic Schools (best fit right now), and Safety Schools (where they are very competitive). Name 3-4 SPECIFIC real college programs in each tier based on their position, location preference, size, stats, GPA, and academic program fit. Explain briefly why each tier fits both athletically and academically. Write in prose paragraphs, label each tier clearly.${vaaSchools}\n\n${profile}`
       },
       {
         id: 's7-content',
-        prompt: `Write ONLY Section 7: 60-Day Action Plan for this athlete. Give a practical, week-by-week plan covering film, recruiting outreach, development focus, and camps. Be specific - name actual actions, not general advice. When you mention creating profiles on recruiting platforms like 247Sports or Rivals, add this line directly after that instruction: "Coming soon - your VScout profile will replace this step and give coaches direct access to your full eval." 4-6 paragraphs organized by week ranges.${vaaInstruction}\n\n${profile}`
+        prompt: `Write ONLY Section 7: 60-Day Action Plan for this athlete. Give a practical, week-by-week plan covering film, recruiting outreach, development focus, and camps. Be specific - name actual actions, not general advice. When you mention creating profiles on recruiting platforms like 247Sports or Rivals, add this line directly after that instruction: "Coming soon - your VScout profile will replace this step and give coaches direct access to your full eval." 4-6 paragraphs organized by week ranges.${vaaAction}\n\n${profile}`
       },
       {
         id: 's8-content',
@@ -792,7 +828,7 @@ Break into three tiers: Reach Schools (slightly above current level), Realistic 
       },
       {
         id: 's9-content',
-        prompt: `Write ONLY Section 9: Final Summary for this athlete. Summarize: (1) their current realistic level, (2) the one or two things that must improve to change their trajectory, and (3) what the honest outcome looks like if nothing changes. End on a forward-looking note without being falsely motivational. 3 paragraphs. After the final paragraph, add a closing line that says: "For personalized guidance and mentorship beyond the field, visit vanguardaa.com to learn how Vanguard Athletic Advisory can help you develop as both an athlete and a leader."${vaaInstruction}\n\n${profile}`
+        prompt: `Write ONLY Section 9: Final Summary for this athlete. Summarize: (1) their current realistic level, (2) the one or two things that must improve to change their trajectory, and (3) what the honest outcome looks like if nothing changes. End on a forward-looking note without being falsely motivational. 3 paragraphs. After the final paragraph, add a closing line that says: "For personalized guidance and mentorship beyond the field, visit vanguardaa.com to learn how Vanguard Athletic Advisory can help you develop as both an athlete and a leader."${vaaSummary}\n\n${profile}`
       }
     ];
 
