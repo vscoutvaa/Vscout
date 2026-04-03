@@ -607,16 +607,43 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
         line = line.replace(/(Realistic Schools)/g, '<strong style="color:#C9952A;font-size:16px;font-family:\'Barlow Condensed\',sans-serif;letter-spacing:1px;text-transform:uppercase;">$1</strong>');
         line = line.replace(/(Safety Schools)/g, '<strong style="color:#C9952A;font-size:16px;font-family:\'Barlow Condensed\',sans-serif;letter-spacing:1px;text-transform:uppercase;">$1</strong>');
       }
-      // Make vanguardaa.com a clickable link in Section 9
-      if (id === 's9-content') {
-        line = line.replace(/vanguardaa\.com/g, '<a href="https://www.vanguardaa.com" target="_blank" style="color:#C9952A;">vanguardaa.com</a>');
-      }
+      // Make vanguardaa.com a clickable link in any section
+      line = line.replace(/vanguardaa\.com/g, '<a href="https://www.vanguardaa.com" target="_blank" style="color:#C9952A;">vanguardaa.com</a>');
       // Add extra top margin before tier label paragraphs in s6
       if (id === 's6-content' && (line.includes('Reach Schools') || line.includes('Realistic Schools') || line.includes('Safety Schools'))) {
         return `<p style="margin-top:20px;padding-top:16px;border-top:1px solid #ECEEF2;">${line}</p>`;
       }
       return `<p>${line}</p>`;
     }).join('');
+  }
+
+  // ── VAA trigger detection
+  function detectVAASignals(f) {
+    const signals = [];
+    const gpa = parseFloat(f.gpa);
+    if (!isNaN(gpa) && gpa < 3.0) signals.push('GPA below 3.0');
+    if (f.offers && f.offers.toLowerCase().includes('no offers')) signals.push('no offers yet');
+    const challengeLower = (f.challenge || '').toLowerCase();
+    if (challengeLower.includes("don't know") || challengeLower.includes("not sure what") || challengeLower.includes("holding me back") || challengeLower.includes("don't understand")) signals.push("athlete doesn't know what's holding them back");
+    if (challengeLower.includes('pressure') || challengeLower.includes('stress') || challengeLower.includes('uncertain') || challengeLower.includes('anxiety') || challengeLower.includes('overwhelm') || challengeLower.includes('worried')) signals.push('athlete mentions pressure, stress, or uncertainty');
+    const targetHigh = ['Power 4 D1', 'Group of 5 D1'].includes(f.selfAssessment);
+    const offersLow = f.offers && (f.offers.includes('No offers') || f.offers.includes('Walk-on') || f.offers.includes('D3') || f.offers.includes('NAIA'));
+    if (targetHigh && offersLow) signals.push('big goals that do not match current recruiting status');
+    if (!f.filmLink || f.filmLink === '') signals.push('no film or limited exposure');
+    if (challengeLower.includes('first generation') || challengeLower.includes('first gen') || challengeLower.includes('no connections') || challengeLower.includes("don't know anyone") || challengeLower.includes('no contacts')) signals.push('first generation or no connections in recruiting');
+    if (!f.major || f.major.toLowerCase() === 'undecided' || f.major.toLowerCase() === 'not sure' || f.major.toLowerCase() === 'idk' || f.major === '') signals.push('undecided major or unclear on future');
+    if (challengeLower.includes('off field') || challengeLower.includes('off-field') || challengeLower.includes('personal') || challengeLower.includes('family') || challengeLower.includes('trouble') || challengeLower.includes('discipline') || challengeLower.includes('suspension') || challengeLower.includes('mental health')) signals.push('off-field challenges mentioned');
+    const yr = parseInt(f.gradYear);
+    const currentYear = new Date().getFullYear();
+    if ((yr === currentYear || yr === currentYear + 1) && (f.offers && f.offers.includes('No offers'))) signals.push('junior or senior with no recruiting activity');
+    if (f.competition && (f.competition.includes('Small school') || f.competition.includes('1A') || f.competition.includes('2A'))) signals.push('playing at a small school with limited exposure');
+    return signals;
+  }
+
+  function buildVAAInstruction(signals) {
+    if (signals.length === 0) return '';
+    return `\n\nVAA REFERRAL INSTRUCTION (IMPORTANT - MUST INCLUDE):
+The following signals were detected in this athlete's profile: ${signals.join('; ')}. Because of these signals, you MUST include a specific, personalized VAA referral paragraph at the end of this section. The referral should feel natural and caring - not salesy. Speak directly to what this specific athlete is going through based on the signals detected. Reference VAA's actual mission: "Vanguard Athletic Advisory is a faith-based organization dedicated to building the whole person - not just the performer. Through mentorship, leadership intensives, and one-on-one coaching, we develop identity, character, and vision. Because everybody performs. Not everybody grows." End the VAA referral with: "Learn more at vanguardaa.com"`;
   }
 
   // ── System prompt base
@@ -681,6 +708,12 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
       document.getElementById('report').style.display = 'block';
       document.getElementById('report').scrollIntoView({ behavior: 'smooth' });
 
+      // Show VAA card on free report if trigger signals detected
+      const freeVaaSignals = detectVAASignals(f);
+      if (freeVaaSignals.length > 0) {
+        document.getElementById('vaaCta').style.display = 'flex';
+      }
+
     } catch(err) {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('formSection').style.display = 'block';
@@ -708,6 +741,8 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
 
     const f = athleteData;
     const profile = profileBlock(f);
+    const vaaSignals = detectVAASignals(f);
+    const vaaInstruction = buildVAAInstruction(vaaSignals);
 
     // Generate sections in parallel for speed
     const sections = [
@@ -721,7 +756,7 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
       },
       {
         id: 's5-content',
-        prompt: `Write ONLY Section 5: Reality Check for this athlete. Compare them directly to what a typical recruit looks like at their target level (${f.selfAssessment}). Be specific about where they match up and where they fall short. 2-3 paragraphs.\n\n${profile}`
+        prompt: `Write ONLY Section 5: Reality Check for this athlete. Compare them directly to what a typical recruit looks like at their target level (${f.selfAssessment}). Be specific about where they match up and where they fall short. 2-3 paragraphs.${vaaInstruction}\n\n${profile}`
       },
       {
         id: 's6-content',
@@ -735,11 +770,21 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
 
 Location preference: ${f.locationPref}. ${f.locationPref === 'Open to anywhere in the country' ? 'Target programs nationally - do not limit to their region.' : f.locationPref === 'Open to my region - within 6-8 hours' ? 'Target programs within their broader region.' : 'Prioritize programs close to their home location.'}
 
-Break into three tiers: Reach Schools (slightly above current level), Realistic Schools (best fit right now), and Safety Schools (where they are very competitive). Name 3-4 SPECIFIC real college programs in each tier based on their position, location preference, size, stats, and GPA. Explain briefly why each tier fits. Write in prose paragraphs, label each tier clearly.\n\n${profile}`
+ACADEMIC FIT RULES (MANDATORY):
+- When recommending ANY school, you MUST look up and mention whether that school has a strong program in the athlete's intended major (${f.major || 'undecided'}).
+- If a school has a nationally recognized or highly ranked program in the athlete's field of study, LEAD with that academic strength - mention it prominently BEFORE discussing the athletic fit.
+- If a school has BOTH a strong athletic fit AND a strong academic program in the athlete's major, emphasize that combination strongly. This is the ideal match and should be treated as a priority recommendation.
+- If a school does not offer the athlete's exact intended major, mention the closest related program they do offer.
+- NEVER recommend a school without addressing the academic fit. Every school recommendation must include how it serves this athlete academically.
+
+SCHOOL SEARCH SCOPE (MANDATORY):
+Consider EVERY college and university in the United States regardless of type, size, location, or affiliation. This includes HBCUs, PWIs, community colleges, faith-based institutions, military academies, Ivy League, Division 1, Division 2, Division 3, NAIA, and JUCO programs. Do not default to well known schools only. The best fit school for this athlete may be one that is less well known but perfectly matches their athletic level, academic program, location preference, and personal goals. Leave no school unconsidered. Cast the widest possible net and find the schools that truly fit this specific athlete.
+
+Break into three tiers: Reach Schools (slightly above current level), Realistic Schools (best fit right now), and Safety Schools (where they are very competitive). Name 3-4 SPECIFIC real college programs in each tier based on their position, location preference, size, stats, GPA, and academic program fit. Explain briefly why each tier fits both athletically and academically. Write in prose paragraphs, label each tier clearly.${vaaInstruction}\n\n${profile}`
       },
       {
         id: 's7-content',
-        prompt: `Write ONLY Section 7: 60-Day Action Plan for this athlete. Give a practical, week-by-week plan covering film, recruiting outreach, development focus, and camps. Be specific - name actual actions, not general advice. When you mention creating profiles on recruiting platforms like 247Sports or Rivals, add this line directly after that instruction: "Coming soon - your VScout profile will replace this step and give coaches direct access to your full eval." 4-6 paragraphs organized by week ranges.\n\n${profile}`
+        prompt: `Write ONLY Section 7: 60-Day Action Plan for this athlete. Give a practical, week-by-week plan covering film, recruiting outreach, development focus, and camps. Be specific - name actual actions, not general advice. When you mention creating profiles on recruiting platforms like 247Sports or Rivals, add this line directly after that instruction: "Coming soon - your VScout profile will replace this step and give coaches direct access to your full eval." 4-6 paragraphs organized by week ranges.${vaaInstruction}\n\n${profile}`
       },
       {
         id: 's8-content',
@@ -747,7 +792,7 @@ Break into three tiers: Reach Schools (slightly above current level), Realistic 
       },
       {
         id: 's9-content',
-        prompt: `Write ONLY Section 9: Final Summary for this athlete. Summarize: (1) their current realistic level, (2) the one or two things that must improve to change their trajectory, and (3) what the honest outcome looks like if nothing changes. End on a forward-looking note without being falsely motivational. 3 paragraphs. After the final paragraph, add a closing line that says: "For personalized guidance and mentorship beyond the field, visit vanguardaa.com to learn how Vanguard Athletic Advisory can help you develop as both an athlete and a leader."\n\n${profile}`
+        prompt: `Write ONLY Section 9: Final Summary for this athlete. Summarize: (1) their current realistic level, (2) the one or two things that must improve to change their trajectory, and (3) what the honest outcome looks like if nothing changes. End on a forward-looking note without being falsely motivational. 3 paragraphs. After the final paragraph, add a closing line that says: "For personalized guidance and mentorship beyond the field, visit vanguardaa.com to learn how Vanguard Athletic Advisory can help you develop as both an athlete and a leader."${vaaInstruction}\n\n${profile}`
       }
     ];
 
