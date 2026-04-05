@@ -517,27 +517,6 @@ footer { padding: 24px 20px; }
 </footer>
 
 <script>
-  window.addEventListener('load', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const pendingData = localStorage.getItem('vscoutAthleteData');
-    if (urlParams.get('paid') === 'true' && pendingData) {
-      athleteData = JSON.parse(pendingData);
-      localStorage.removeItem('vscoutAthleteData');
-      localStorage.removeItem('vscoutPending');
-      document.getElementById('formSection').style.display = 'none';
-      document.getElementById('report').style.display = 'block';
-      const f = athleteData;
-      const extraPos2 = [f.position2, f.position3].filter(p => p && p !== '').join(' · ');
-      const posDisplay = extraPos2 ? f.position + ' · ' + extraPos2 : f.position;
-      document.getElementById('reportName').textContent = f.name.toUpperCase();
-      document.getElementById('reportMeta').textContent = posDisplay + ' · Class of ' + f.gradYear + ' · ' + f.location;
-      document.getElementById('reportDate').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
-      document.getElementById('s1-content').innerHTML = 'Your payment was successful. Your full report is being generated below.';
-      document.getElementById('s2-content').innerHTML = 'Your payment was successful. Scroll down for your complete evaluation.';
-      unlockFullReport();
-    }
-  });
-
   let athleteData = {};
 
   // ── Loading step animator
@@ -880,6 +859,46 @@ Break into three tiers: Reach Schools (slightly above current level), Realistic 
     document.getElementById('errorBox').style.display = 'none';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // ── Post-payment flow: runs after DOM is ready and all functions are defined
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pendingData = localStorage.getItem('vscoutAthleteData');
+    if (urlParams.get('paid') === 'true' && pendingData) {
+      // Step 1-2: Retrieve athleteData from localStorage
+      athleteData = JSON.parse(pendingData);
+      localStorage.removeItem('vscoutAthleteData');
+      localStorage.removeItem('vscoutPending');
+
+      // Step 3: Hide the form section completely
+      document.getElementById('formSection').style.display = 'none';
+
+      // Step 4: Show the report section
+      document.getElementById('report').style.display = 'block';
+
+      // Step 5: Populate the report header with athlete info
+      const f = athleteData;
+      const extraPos2 = [f.position2, f.position3].filter(function(p) { return p && p !== ''; }).join(' \u00b7 ');
+      const posDisplay = extraPos2 ? f.position + ' \u00b7 ' + extraPos2 : f.position;
+      document.getElementById('reportName').textContent = f.name.toUpperCase();
+      document.getElementById('reportMeta').textContent = posDisplay + ' \u00b7 Class of ' + f.gradYear + ' \u00b7 ' + f.location;
+      document.getElementById('reportDate').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
+
+      // Step 6: Show section 1 and section 2 with a success message
+      document.getElementById('s1-content').innerHTML = '<p>Your payment was successful. Your full report is being generated below.</p>';
+      document.getElementById('s2-content').innerHTML = '<p>Your payment was successful. Scroll down for your complete evaluation.</p>';
+
+      // Step 7: Hide the paywall banner
+      document.getElementById('paywallBanner').style.display = 'none';
+
+      // Step 8: Show the unlocked sections, hide locked sections
+      document.getElementById('lockedSections').style.display = 'none';
+      document.getElementById('unlockedSections').style.display = 'block';
+
+      // Step 9: Call unlockFullReport() to generate all paid sections
+      unlockFullReport();
+    }
+  });
 </script>
 
 </body>
