@@ -456,7 +456,7 @@ footer { padding: 24px 20px; }
     <div style="text-align:center;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:800;color:#FFFFFF;line-height:1;"><sup style="font-size:32px;color:#C9952A;vertical-align:super;">$</sup>35</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">One-time · No subscription</div>
-      <button class="btn-unlock" onclick="window.location.href='https://buy.stripe.com/test_aFa9AT4wU9zI2odbcJ73G00'"
+      <button class="btn-unlock" onclick="handleUnlock()"
  style="width:100%;font-size:22px;padding:18px 48px;">Unlock Full Report →</button>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-top:10px;letter-spacing:1px;">One-time - Instant delivery to your email - No subscription</div>
     </div>
@@ -517,6 +517,27 @@ footer { padding: 24px 20px; }
 </footer>
 
 <script>
+  window.addEventListener('load', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pendingData = localStorage.getItem('vscoutAthleteData');
+    if (urlParams.get('paid') === 'true' && pendingData) {
+      athleteData = JSON.parse(pendingData);
+      localStorage.removeItem('vscoutAthleteData');
+      localStorage.removeItem('vscoutPending');
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('report').style.display = 'block';
+      const f = athleteData;
+      const extraPos2 = [f.position2, f.position3].filter(p => p && p !== '').join(' · ');
+      const posDisplay = extraPos2 ? f.position + ' · ' + extraPos2 : f.position;
+      document.getElementById('reportName').textContent = f.name.toUpperCase();
+      document.getElementById('reportMeta').textContent = posDisplay + ' · Class of ' + f.gradYear + ' · ' + f.location;
+      document.getElementById('reportDate').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
+      document.getElementById('s1-content').innerHTML = 'Your payment was successful. Your full report is being generated below.';
+      document.getElementById('s2-content').innerHTML = 'Your payment was successful. Scroll down for your complete evaluation.';
+      unlockFullReport();
+    }
+  });
+
   let athleteData = {};
 
   // ── Loading step animator
@@ -759,10 +780,9 @@ Film: ${f.filmLink || 'not provided'} | Challenge: ${f.challenge}`;
 
   // ── STEP 2: Handle unlock (demo mode - in production this is post-Stripe)
   function handleUnlock() {
-    // In production: redirect to Stripe, then on return call unlockFullReport()
-    // For demo: unlock immediately
-    const confirmed = confirm("In production, this triggers a $35 Stripe payment.\n\nFor this demo, click OK to simulate a successful payment and unlock all 8 sections.");
-    if (confirmed) unlockFullReport();
+    localStorage.setItem('vscoutAthleteData', JSON.stringify(athleteData));
+    localStorage.setItem('vscoutPending', 'true');
+    window.location.href = 'https://buy.stripe.com/test_aFa9AT4wU9zI2odbcJ73G00';
   }
 
   // ── STEP 3: Generate all remaining sections after unlock
