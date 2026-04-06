@@ -5,7 +5,35 @@ exports.handler = async function(event) {
 
   try {
     const body = JSON.parse(event.body);
-    
+
+    // Handle email sending
+    if (body.type === 'email') {
+      const emailResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
+        },
+        body: JSON.stringify({
+          from: 'VScout Reports <reports@vscoutvaa.com>',
+          to: body.to,
+          subject: `VScout Report for ${body.athleteName}`,
+          html: body.reportHtml
+        })
+      });
+
+      const emailData = await emailResponse.json();
+
+      return {
+        statusCode: emailResponse.ok ? 200 : 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(emailData)
+      };
+    }
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
