@@ -881,24 +881,26 @@ Break into three tiers: Reach Schools (slightly above current level), Realistic 
 
 <script>
 (function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('paid') === 'true') {
-    const pendingData = localStorage.getItem('vscoutAthleteData');
-    if (pendingData) {
-      athleteData = JSON.parse(pendingData);
-      setTimeout(function() {
-        document.getElementById('formSection').style.display = 'none';
-        document.getElementById('report').style.display = 'block';
-        const f = athleteData;
-        document.getElementById('reportName').textContent = f.name.toUpperCase();
-        document.getElementById('reportMeta').textContent = f.position + ' · Class of ' + f.gradYear + ' · ' + f.location;
-        document.getElementById('reportDate').textContent = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}).toUpperCase();
-        document.getElementById('s1-content').innerHTML = '<p>Payment successful. Your full report is generating now.</p>';
-        document.getElementById('s2-content').innerHTML = '<p>Scroll down for your complete evaluation.</p>';
-        unlockFullReport();
-      }, 500);
-    }
-  }
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('paid') === 'true') {
+const pendingData = localStorage.getItem('vscoutAthleteData');
+if (pendingData) {
+athleteData = JSON.parse(pendingData);
+localStorage.removeItem('vscoutAthleteData');
+localStorage.removeItem('vscoutPending');
+setTimeout(function() {
+document.getElementById('formSection').style.display = 'none';
+document.getElementById('report').style.display = 'block';
+const f = athleteData;
+document.getElementById('reportName').textContent = f.name.toUpperCase();
+document.getElementById('reportMeta').textContent = f.position + ' · Class of ' + f.gradYear + ' · ' + f.location;
+document.getElementById('reportDate').textContent = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}).toUpperCase();
+document.getElementById('s1-content').innerHTML = 'Payment successful. Your full report is generating now.';
+document.getElementById('s2-content').innerHTML = 'Scroll down for your complete evaluation.';
+unlockFullReport();
+}, 500);
+}
+}
 })();
 </script>
 
