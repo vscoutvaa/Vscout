@@ -14,7 +14,8 @@ exports.handler = async function(event) {
           'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
         },
         body: JSON.stringify({
-          from: 'VScout by Vanguard Athletic Advisory <noreply@vanguardaa.com>',
+          from:'onboarding@resend.dev',
+,
           to: body.to,
           subject: `Your VScout Recruiting Evaluation - ${body.athleteName || 'Athlete'}`,
           html: body.reportHtml
