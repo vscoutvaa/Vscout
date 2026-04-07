@@ -6,7 +6,6 @@ exports.handler = async function(event) {
   try {
     const body = JSON.parse(event.body);
 
-    // Handle email sending
     if (body.type === 'email') {
       const emailResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -15,9 +14,9 @@ exports.handler = async function(event) {
           'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
         },
         body: JSON.stringify({
-          from: 'VScout Reports <reports@vscoutvaa.com>',
+          from: 'VScout by Vanguard Athletic Advisory <noreply@vanguardaa.com>',
           to: body.to,
-          subject: `VScout Report for ${body.athleteName}`,
+          subject: `Your VScout Recruiting Evaluation - ${body.athleteName || 'Athlete'}`,
           html: body.reportHtml
         })
       });
@@ -45,7 +44,7 @@ exports.handler = async function(event) {
     });
 
     const data = await response.json();
-    
+
     return {
       statusCode: 200,
       headers: {
@@ -54,6 +53,7 @@ exports.handler = async function(event) {
       },
       body: JSON.stringify(data)
     };
+
   } catch (err) {
     return {
       statusCode: 500,
