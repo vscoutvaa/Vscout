@@ -15,7 +15,6 @@ exports.handler = async function(event) {
         },
         body: JSON.stringify({
           from:'onboarding@resend.dev',
-,
           to: body.to,
           subject: `Your VScout Recruiting Evaluation - ${body.athleteName || 'Athlete'}`,
           html: body.reportHtml
