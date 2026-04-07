@@ -843,18 +843,21 @@ Break into three tiers: Reach Schools (slightly above current level), Realistic 
       }
     }));
 
-    // Send report via email
-    const reportContent = document.getElementById('unlockedSections').innerHTML;
-    await fetch('/.netlify/functions/claude', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'email',
-        to: athleteData.athleteEmail,
-        athleteName: athleteData.name,
-        reportHtml: '<html><body style="font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:40px;">' + reportContent + '</body></html>'
-      })
-    });
+    try {
+      const reportContent = document.getElementById('unlockedSections').innerHTML;
+      await fetch('/.netlify/functions/claude', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'email',
+          to: athleteData.athleteEmail,
+          athleteName: athleteData.name,
+          reportHtml: '<html><body style="font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:40px;color:#1A2332;">' + reportContent + '</body></html>'
+        })
+      });
+    } catch(emailErr) {
+      console.log('Email send failed:', emailErr);
+    }
 
     // Clear stored data after email is sent
     localStorage.removeItem('vscoutAthleteData');
