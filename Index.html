@@ -856,6 +856,10 @@ Break into three tiers: Reach Schools (slightly above current level), Realistic 
       })
     });
 
+    // Clear stored data after email is sent
+    localStorage.removeItem('vscoutAthleteData');
+    localStorage.removeItem('vscoutPending');
+
     // Scroll to unlocked content
     document.getElementById('unlockedSections').scrollIntoView({ behavior: 'smooth' });
   }
@@ -892,8 +896,6 @@ Break into three tiers: Reach Schools (slightly above current level), Realistic 
         document.getElementById('s1-content').innerHTML = '<p>Payment successful. Your full report is generating now.</p>';
         document.getElementById('s2-content').innerHTML = '<p>Scroll down for your complete evaluation.</p>';
         unlockFullReport();
-        localStorage.removeItem('vscoutAthleteData');
-        localStorage.removeItem('vscoutPending');
       }, 500);
     }
   }
