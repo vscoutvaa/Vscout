@@ -40,8 +40,11 @@ exports.handler = async function(event) {
         'x-api-key': process.env.Anthropic_api_key,
         'anthropic-version': '2023-06-01'
       },
-      body: JSON.stringify(body)
-    });
+      body: JSON.stringify({
+  model: 'claude-sonnet-4-5-20250929',
+  max_tokens: 4096,
+  messages: body.messages
+})
 
     const data = await response.json();
 
