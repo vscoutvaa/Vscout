@@ -45,6 +45,8 @@ exports.handler = async function(event) {
   max_tokens: 4096,
   messages: body.messages
 })
+    });
+  
 
     const data = await response.json();
 
