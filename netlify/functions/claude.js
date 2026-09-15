@@ -48,10 +48,15 @@ exports.handler = async function(event) {
     });
   
 
-    const data = await response.json();
+        const data = await response.json();
+
+    if (!response.ok) {
+      console.error('Anthropic error:', response.status, JSON.stringify(data));
+    }
 
     return {
-      statusCode: 200,
+      statusCode: response.ok ? 200 : response.status,
+
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json'
